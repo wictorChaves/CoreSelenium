@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -78,12 +79,19 @@ public abstract class SeleniumMain {
     }
 
     protected void _selectOptionByText(By selector, String text) {
-        _getElementWaitLoad(selector).click();
+        WebElement       selectElement = _getElementWaitLoad(selector);
+        Select           select        = new Select(selectElement);
+        List<WebElement> allOptions    = select.getOptions();
+
+        String selectValue = "";
+        for (WebElement e : allOptions)
+            if (e.getText().trim().toLowerCase().equals(text.trim().toLowerCase()))
+                selectValue = e.getText();
+
+        selectElement.click();
         {
-            WebElement dropdown = _getElementWaitLoad(selector);
-            dropdown.findElement(By.xpath("//option[. = '" + text + "']")).click();
+            selectElement.findElement(By.xpath("//option[. = '" + selectValue + "']")).click();
         }
-        _clickOut();
     }
 
     public abstract void Execute() throws InterruptedException;
