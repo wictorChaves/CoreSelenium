@@ -78,22 +78,6 @@ public abstract class SeleniumMain {
         });
     }
 
-    protected void _selectOptionByText(By selector, String text) {
-        WebElement       selectElement = _getElementWaitLoad(selector);
-        Select           select        = new Select(selectElement);
-        List<WebElement> allOptions    = select.getOptions();
-
-        String selectValue = "";
-        for (WebElement e : allOptions)
-            if (e.getText().trim().toLowerCase().equals(text.trim().toLowerCase()))
-                selectValue = e.getText();
-
-        selectElement.click();
-        {
-            selectElement.findElement(By.xpath("//option[. = '" + selectValue + "']")).click();
-        }
-    }
-
     public abstract void Execute() throws InterruptedException;
 
 }
