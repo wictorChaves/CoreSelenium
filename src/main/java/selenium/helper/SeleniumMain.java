@@ -1,12 +1,8 @@
 package selenium.helper;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -29,6 +25,16 @@ public abstract class SeleniumMain {
 
     protected WebElement _getElementWaitLoad(By by) {
         return _wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    protected void _waitLoad(By selector) {
+        final By selectorInput = selector;
+        _wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                WebElement button = driver.findElement(selectorInput);
+                return (!button.isDisplayed());
+            }
+        });
     }
 
     protected List<WebElement> _getElementsWaitLoad(By by) {
@@ -66,10 +72,9 @@ public abstract class SeleniumMain {
     }
 
     protected void _waitUtilClassRemove(String classe, By selector) {
-        final String  classInput    = classe;
-        final By      selectorInput = selector;
-        WebDriverWait wait          = new WebDriverWait(_driver, 40);
-        wait.until(new ExpectedCondition<Boolean>() {
+        final String classInput    = classe;
+        final By     selectorInput = selector;
+        _wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 WebElement button  = driver.findElement(selectorInput);
                 String     classes = button.getAttribute("class");
