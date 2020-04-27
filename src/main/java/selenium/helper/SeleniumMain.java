@@ -27,6 +27,11 @@ public abstract class SeleniumMain {
         return _wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
+    protected WebElement _getElementWaitLoad(By by, long time) {
+        WebDriverWait wait = new WebDriverWait(_driver, time);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
     protected void _waitLoad(By selector) {
         final By selectorInput = selector;
         _wait.until(new ExpectedCondition<Boolean>() {
