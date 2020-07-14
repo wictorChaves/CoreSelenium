@@ -19,7 +19,7 @@ Projeto para facilitar a codificação de testes utilizando Selenium.
 
 Arquivo de configuração do projeto.
 
-- [Documentação](docs/app.config)
+- [Documentação](docs/app-config.md)
 
 ## Pacotes
 
