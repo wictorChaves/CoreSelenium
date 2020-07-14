@@ -2,9 +2,9 @@
 
 Arquivo de configuração do projeto.
 
-## Configurações
+ - [Arquivo de exemplo](app.config)
 
- - [Exemplo](app.config)
+## Configurações
 
 **drive_executable_path:** Caminho para o arquivo do driver do navegador.
 
