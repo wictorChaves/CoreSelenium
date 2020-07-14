@@ -12,37 +12,37 @@ import java.util.List;
 
 public abstract class SeleniumCore {
 
-    protected WebDriver     _driver;
-    private   WebDriverWait _wait;
+    protected WebDriver     driver;
+    private   WebDriverWait wait;
     private   Long          timeoutTime = 100L;
 
     public SeleniumCore(WebDriver driver) {
-        _driver = driver;
-        _wait   = new WebDriverWait(_driver, timeoutTime);
+        this.driver = driver;
+        wait        = new WebDriverWait(this.driver, timeoutTime);
     }
 
-    protected WebElement _getElementWaitLoad(By by) {
-        return _wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-    }
-
-    protected WebElement _getElementWaitLoad(By by, long time) {
-        WebDriverWait wait = new WebDriverWait(_driver, time);
+    protected WebElement getElementWaitLoad(By by) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    protected void _clickOut() {
-        _driver.findElement(By.xpath("/html/body")).click();
+    protected WebElement getElementWaitLoad(By by, long time) {
+        WebDriverWait wait = new WebDriverWait(driver, time);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    protected void _fieldWithJavascript(By by, String value) throws InterruptedException {
-        _driver.findElement(by).sendKeys("");
+    protected void clickOut() {
+        driver.findElement(By.xpath("/html/body")).click();
+    }
+
+    protected void fieldWithJavascript(By by, String value) throws InterruptedException {
+        driver.findElement(by).sendKeys("");
         Thread.sleep(1000L);
-        _driver.findElement(by).sendKeys(value);
+        driver.findElement(by).sendKeys(value);
     }
 
-    protected void _waitLoad(By selector) {
+    protected void waitLoad(By selector) {
         final By selectorInput = selector;
-        _wait.until(new ExpectedCondition<Boolean>() {
+        wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 WebElement button = driver.findElement(selectorInput);
                 return (!button.isDisplayed());
@@ -50,40 +50,40 @@ public abstract class SeleniumCore {
         });
     }
 
-    protected List<WebElement> _getElementsWaitLoad(By by) {
-        return _wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+    protected List<WebElement> getElementsWaitLoad(By by) {
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
     }
 
-    public boolean CheckElement(By by) {
-        if (TryFindElement(by)) {
-            return IsElementVisible(_driver.findElement(by));
+    public boolean checkElement(By by) {
+        if (tryFindElement(by)) {
+            return isElementVisible(driver.findElement(by));
         }
         return false;
     }
 
-    public boolean TryFindElement(By by) {
+    public boolean tryFindElement(By by) {
         try {
-            _driver.findElement(by);
+            driver.findElement(by);
         } catch (NoSuchElementException ex) {
             return false;
         }
         return true;
     }
 
-    public boolean IsElementVisible(WebElement element) {
+    public boolean isElementVisible(WebElement element) {
         return element.isDisplayed() && element.isEnabled();
     }
 
-    public boolean CheckMessage(String message, By by) {
+    public boolean checkMessage(String message, By by) {
         WebElement element = null;
-        element = _getElementWaitLoad(by);
+        element = getElementWaitLoad(by);
         return element.getText().contains(message);
     }
 
-    protected void _waitUtilClassRemove(String classe, By selector) {
+    protected void waitUtilClassRemove(String classe, By selector) {
         final String classInput    = classe;
         final By     selectorInput = selector;
-        _wait.until(new ExpectedCondition<Boolean>() {
+        wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 WebElement button  = driver.findElement(selectorInput);
                 String     classes = button.getAttribute("class");
@@ -92,8 +92,8 @@ public abstract class SeleniumCore {
         });
     }
 
-    public void WaitLoadElement(By selector) {
-        WebDriverWait wait = new WebDriverWait(_driver, timeoutTime);
+    public void waitLoadElement(By selector) {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutTime);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(selector));
     }
 

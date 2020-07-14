@@ -3,11 +3,11 @@ package selenium.helper;
 public class MessageTest extends Message {
 
     public static void show(boolean test, String textTest) {
-        Message.Text(textTest + ": ");
+        Message.text(textTest + ": ");
         if (test)
-            Message.Success("OK");
+            Message.success("OK");
         else
-            Message.Error("FAIL");
+            Message.error("FAIL");
         System.out.println();
     }
 

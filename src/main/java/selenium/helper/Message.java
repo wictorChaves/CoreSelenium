@@ -12,19 +12,19 @@ public class Message {
     private static final String ANSI_CYAN   = "\u001B[36m";
     private static final String ANSI_WHITE  = "\u001B[37m";
 
-    public static void Text(String msg) {
+    public static void text(String msg) {
         System.out.print(msg);
     }
 
-    public static void BreakLine() {
+    public static void breakLine() {
         System.out.println();
     }
 
-    public static void Success(String msg) {
+    public static void success(String msg) {
         System.out.print(ANSI_GREEN + msg + ANSI_RESET);
     }
 
-    public static void Error(String msg) {
+    public static void error(String msg) {
         System.out.print(ANSI_RED + msg + ANSI_RESET);
     }
 

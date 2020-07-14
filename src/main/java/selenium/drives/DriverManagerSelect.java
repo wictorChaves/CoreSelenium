@@ -5,12 +5,12 @@ import org.openqa.selenium.WebDriver;
 
 public class DriverManagerSelect {
 
-    public WebDriver GetDriver(Driver driver, String url) {
+    public WebDriver getDriver(Driver driver, String url) {
         switch (driver) {
             case CHROME:
-                return new ChromeDriverManager().GetDriver(url);
+                return new ChromeDriverManager().getDriver(url);
             case FIREFOX:
-                return new FirefoxDriverManager().GetDriver(url);
+                return new FirefoxDriverManager().getDriver(url);
             default:
                 throw new UnsupportedOperationException("Drive não implementado!");
         }

@@ -8,17 +8,17 @@ public class InputTextCustom extends ElementMain {
         super(element);
     }
 
-    public void SetValue(String value) {
+    public void setValue(String value) {
         self.clear();
         self.sendKeys(value);
     }
 
-    public void Clean() {
-        SetValue(" ");
+    public void clean() {
+        setValue(" ");
         self.sendKeys(Keys.BACK_SPACE);
     }
 
-    public String GetValue() {
+    public String getValue() {
         String text  = self.getText();
         String value = self.getAttribute("value");
         return (text.length() > value.length()) ? text : value;

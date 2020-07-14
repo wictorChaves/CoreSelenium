@@ -2,16 +2,16 @@ package selenium.helper;
 
 public class TestMain {
 
-    public static void Check(boolean test, String testLabel) {
-        Message.Text("[ ");
+    public static void check(boolean test, String testLabel) {
+        Message.text("[ ");
         if (test) {
-            Message.Success("OK");
+            Message.success("OK");
         } else {
-            Message.Error("FAIL");
+            Message.error("FAIL");
         }
-        Message.Text(" ]");
-        Message.Text(" " + testLabel);
-        Message.BreakLine();
+        Message.text(" ]");
+        Message.text(" " + testLabel);
+        Message.breakLine();
     }
 
 }

@@ -8,6 +8,6 @@ public abstract class SeleniumMain extends SeleniumCore {
         super(driver);
     }
 
-    public abstract void Execute() throws InterruptedException;
+    public abstract void execute() throws InterruptedException;
 
 }

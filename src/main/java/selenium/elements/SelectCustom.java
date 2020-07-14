@@ -7,21 +7,21 @@ import java.util.List;
 
 public class SelectCustom extends Select {
 
-    WebElement _self;
+    WebElement self;
 
     public SelectCustom(WebElement element) {
         super(element);
-        _self = element;
+        self = element;
     }
 
-    public void GetOptionByText(String text) {
+    public void setOptionByText(String text) {
         List<WebElement> allOptions = this.getOptions();
 
         for (WebElement e : allOptions) {
             String optionText    = e.getText().trim().toLowerCase();
             String textFormatted = text.trim().toLowerCase();
             if (optionText.equals(textFormatted)) {
-                _self.click();
+                self.click();
                 {
                     e.click();
                 }
@@ -30,14 +30,14 @@ public class SelectCustom extends Select {
         }
     }
 
-    public void GetOptionByValue(String value) {
+    public void setOptionByValue(String value) {
         List<WebElement> allOptions = this.getOptions();
 
         for (WebElement e : allOptions) {
             String optionValue    = e.getAttribute("value");
             String valueFormatted = value.trim().toLowerCase();
             if (optionValue.equals(valueFormatted)) {
-                _self.click();
+                self.click();
                 {
                     e.click();
                 }

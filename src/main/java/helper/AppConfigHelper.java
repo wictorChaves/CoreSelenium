@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class AppConfigHelper {
 
-    public static String GetProp(String propName) {
+    public static String getProp(String propName) {
         try {
             Properties prop     = new Properties();
             String     fileName = FileHelper.getRootPath() + File.separator +"app.config ";
